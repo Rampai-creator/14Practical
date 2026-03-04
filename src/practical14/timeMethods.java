@@ -116,3 +116,54 @@ public class timeMethods {
             kvValues[pos + 1] = String.valueOf(pos + 1); //value = shuffle rank
         }
     }
+  
+    //Build and fill an openHash table of size mPrime with `entries` pairs.
+  
+    static openHash buildOpenHash(int mPrime, int entries) {
+        openHash oh = new openHash(mPrime);
+        for (int i = 1; i <= entries; i++) {
+            oh.insert(kvKeys[i], kvValues[i]);
+        }
+        return oh;
+    }
+
+  
+    //Build and fill a chainedHash table of size mPrime with `entries` pairs.
+    
+    static chainedHash buildChainedHash(int mPrime, int entries) {
+        chainedHash ch = new chainedHash(mPrime);
+        for (int i = 1; i <= entries; i++) {
+            ch.insert(kvKeys[i], kvValues[i]);
+        }
+        return ch;
+    }
+
+    
+    //Standard deviation of timing samples (in ms)
+    
+    static double stdDev(double sum, double sumSq, int n) {
+        double mean = sum / n;
+        return Math.sqrt((sumSq - n * mean * mean) / (n - 1));
+    }
+
+   
+    //Return the smallest prime >= n (simple trial-division sieve)
+   
+    static int nextPrime(int n) {
+        if (n < 2) return 2;
+        if (n % 2 == 0) n++;
+        while (!isPrime(n)) n += 2;
+        return n;
+    }
+
+    static boolean isPrime(int n) {
+        if (n < 2) return false;
+        if (n == 2) return true;
+        if (n % 2 == 0) return false;
+        for (int d = 3; (long) d * d <= n; d += 2) {
+            if (n % d == 0) return false;
+        }
+        return true;
+    }
+}
+
