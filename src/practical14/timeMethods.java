@@ -25,10 +25,10 @@ public class timeMethods {
         System.out.println("Data ready.\n");
 
         //Results table header
-        System.out.println("=".repeat(72));
+        
         System.out.printf("%-22s %8s %12s %12s%n",
                 "Method", "Alpha", "Open (s)", "Chained (s)");
-        System.out.println("=".repeat(72));
+        
 
         for (int idx = 0; idx < ALPHAS.length; idx++) {
             double alpha = ALPHAS[idx];
@@ -93,7 +93,7 @@ public class timeMethods {
                     1.0 / (1.0 - alpha), openSD, chainSD);
         }
 
-        System.out.println("=".repeat(72));
+        
         System.out.println("\nAll times are averages over " + REPETITIONS +
                 " repetitions, each doing " + LOOKUP_N + " lookups.");
     }
