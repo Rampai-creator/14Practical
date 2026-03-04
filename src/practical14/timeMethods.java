@@ -91,7 +91,7 @@ public class timeMethods {
             //print detailed stats below each row
             System.out.printf(" 1/(1-\u03b1) = %5.1f open \u00b1%.4fms chained \u00b1%.4fms%n",
                     1.0 / (1.0 - alpha), openSD, chainSD);
-        }
+        }//displaying
 
         
         System.out.println("\nAll times are averages over " + REPETITIONS +
