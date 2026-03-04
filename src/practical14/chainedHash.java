@@ -50,5 +50,63 @@ public class chainedHash {
         table[i] = newNode;
         count++;
     }
+    //Lookup: return value for key, or null if absent
+    public String lookup(String key) {
+        int i = hash(key);
+        ChainNode current = table[i];
+
+        while (current != null) {
+            if (current.key.equals(key)) {
+                return current.value;
+            }
+            current = current.next;
+        }
+        return null;
+    }
+
+    //Remove: return value and delete the node; null if not found
+    public String remove(String key) {
+        int i = hash(key);
+        ChainNode current = table[i];
+        ChainNode prev = null;
+
+        while (current != null) {
+            if (current.key.equals(key)) {
+                if (prev == null) {
+                    table[i] = current.next;
+                } else {
+                    prev.next = current.next;
+                }
+                count--;
+                return current.value;
+            }
+            prev = current;
+            current = current.next;
+        }
+        return null;
+    }
+
+    public boolean isInTable(String key) {
+        return lookup(key) != null;
+    }
+
+    //Chained hashing is never "full" in the traditional sense
+    public boolean isFull() {
+        return false;
+    }
+
+    public boolean isEmpty() {
+        return count == 0;
+    }
+
+    public int size() {
+        return count;
+    }
+
+    public int tableSize() {
+        return m;
+    }
+}
+
 
     
